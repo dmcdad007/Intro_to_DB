@@ -1,21 +1,13 @@
-Table: Books
-Create Table: CREATE TABLE `Books` (
-  `book_id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(130) NOT NULL,
-  `author_id` int NOT NULL,
-  `price` double NOT NULL,
-  `publication_date` date DEFAULT NULL,
-  PRIMARY KEY (`book_id`),
-  KEY `author_id` (`author_id`),
-  CONSTRAINT `Books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `Authors` (`author_id`) ON UPDATE CASCADE ON DELETE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+-- task_4.sql
+-- Script to print the full description of the table 'books'
+-- from the database passed as an argument to the mysql command
 
-
-
-
-
--- Switch to the alx_book_store database
-USE alx_book_store;
-
--- Display the full description of the table 'books' without using DESCRIBE or EXPLAIN
-SHOW CREATE TABLE Books;
+SELECT COLUMN_NAME,
+       COLUMN_TYPE,
+       IS_NULLABLE,
+       COLUMN_KEY,
+       COLUMN_DEFAULT,
+       EXTRA
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = DATABASE()
+  AND TABLE_NAME = 'Books';
