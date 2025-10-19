@@ -17,11 +17,25 @@ CREATE TABLE Books (
     FOREIGN KEY (author_id) REFERENCES AUTHORS(author_id)
 );
 
-CREATE TABLE CUSTOMERS (
+CREATE TABLE Customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
     email VARCHAR(215) NOT NULL,
     address TEXT
 );
 
-CREATE TABLE
+CREATE TABLE Orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id)
+);
+
+CREATE TABLE Order_Details (
+    orderdetailid INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    book_id INT NOT NULL,
+    quantity DOUBLE NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
+    FOREIGN KEY (book_id) REFERENCES BOOKS(book_id)
+);
